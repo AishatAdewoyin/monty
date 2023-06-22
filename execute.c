@@ -2,29 +2,29 @@
 /**
 * execute - executes the opcode
 * @stack: head linked list - stack
-* @counter: line_counter
+* @lineCount: line_lineCount
 * @file: poiner to monty file
 * @content: line content
 * Return: no return
 */
-int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
+int execute(char *content, stack_t **stack, unsigned int lineCount, FILE *file)
 {
 	instruction_t opst[] = {
-				{"push", f_push}, {"pall", f_pall}, {"pint", f_pint},
-				{"pop", f_pop},
-				{"swap", f_swap},
-				{"add", f_add},
-				{"nop", f_nop},
-				{"sub", f_sub},
-				{"div", f_div},
-				{"mul", f_mul},
-				{"mod", f_mod},
-				{"pchar", f_pchar},
-				{"pstr", f_pstr},
-				{"rotl", f_rotl},
-				{"rotr", f_rotr},
-				{"queue", f_queue},
-				{"stack", f_stack},
+				{"push", s_push}, {"pall", s_pall}, {"pint", s_pint},
+				{"pop", s_pop},
+				{"swap", s_swap},
+				{"add", s_add},
+				{"nop", s_nop},
+				{"sub", s_sub},
+				{"div", s_div},
+				{"mul", s_mul},
+				{"mod", s_mod},
+				{"pchar", s_pchar},
+				{"pstr", s_pstr},
+				{"rotl", s_rotl},
+				{"rotr", s_rotr},
+				{"queue", s_queue},
+				{"stack", s_stack},
 				{NULL, NULL}
 				};
 	unsigned int i = 0;
@@ -37,15 +37,16 @@ int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
 	while (opst[i].opcode && op)
 	{
 		if (strcmp(op, opst[i].opcode) == 0)
-		{	opst[i].f(stack, counter);
+		{	opst[i].f(stack, lineCount);
 			return (0);
 		}
 		i++;
 	}
 	if (op && opst[i].opcode == NULL)
-	{ fprintf(stderr, "L%d: unknown instruction %s\n", counter, op);
+	{ fprintf(stderr, "L%d: unknown instruction %s\n", lineCount, op);
 		fclose(file);
 		free(content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE); }
 	return (1);
+}

@@ -1,4 +1,5 @@
 #include "monty.h"
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 bus_t bus = {NULL, NULL, NULL, 0};
 /**
 * main - monty code interpreter
@@ -13,7 +14,7 @@ int main(int argc, char *argv[])
 	size_t size = 0;
 	ssize_t read_line = 1;
 	stack_t *stack = NULL;
-	unsigned int counter = 0;
+	unsigned int lineCount = 0;
 
 	if (argc != 2)
 	{
@@ -32,10 +33,10 @@ int main(int argc, char *argv[])
 		content = NULL;
 		read_line = getline(&content, &size, file);
 		bus.content = content;
-		counter++;
+		lineCount++;
 		if (read_line > 0)
 		{
-			execute(content, &stack, counter, file);
+			execute(content, &stack, lineCount, file);
 		}
 		free(content);
 	}

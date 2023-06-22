@@ -1,14 +1,14 @@
 #include "monty.h"
 /**
- * f_queue - prints the top
+ * s_addqueue - prints the top
  * @head: stack head
- * @counter: line_number
+ * @lineCount: lineCount
  * Return: no return
 */
-void f_queue(stack_t **head, unsigned int counter)
+void s_queue(stack_t **head, unsigned int lineCount)
 {
 	(void)head;
-	(void)counter;
+	(void)lineCount;
 	bus.lifi = 1;
 }
 
