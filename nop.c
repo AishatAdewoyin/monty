@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
-  *s_addnop- do nothing
+  *s_nop- do nothing
   *@head: head pointer
   *@lineNum: line counter
   *Return: nothing
