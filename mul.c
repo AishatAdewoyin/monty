@@ -1,32 +1,32 @@
 #include "monty.h"
 /**
- * s_addmul - multiplies the top two elements of the stack.
- * @head: stack head
- * @lineCount: lineCount
- * Return: no return
+ * s_mul - multiplies the top two elements of the stack.
+ * @head: head pointer
+ * @lineNum: line counter
+ * Return: nothing
 */
-void s_mul(stack_t **head, unsigned int lineCount)
+void s_mul(stack_t **head, unsigned int lineNum)
 {
-	stack_t *h;
-	int len = 0, aux;
+	stack_t *temp;
+	int l = 0, curr;
 
-	h = *head;
-	while (h)
+	temp = *head;
+	while (temp)
 	{
-		h = h->next;
-		len++;
+		temp = temp->next;
+		l++;
 	}
-	if (len < 2)
+	if (l < 2)
 	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", lineCount);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", lineNum);
 		fclose(bus.file);
 		free(bus.content);
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	h = *head;
-	aux = h->next->n * h->n;
-	h->next->n = aux;
-	*head = h->next;
-	free(h);
+	temp = *head;
+	curr = temp->next->n * temp->n;
+	temp->next->n = curr;
+	*head = temp->next;
+	free(temp);
 }

@@ -1,19 +1,19 @@
 #include "monty.h"
 /**
-  *s_addsub- sustration
-  *@head: stack head
-  *@lineCount: lineCount
-  *Return: no return
+  *s_sub- substration of two elements
+  *@head: stack head pointer
+  *@lineCount: line counter
+  *Return: nothing
  */
 void s_sub(stack_t **head, unsigned int lineCount)
 {
-	stack_t *aux;
-	int sus, nodes;
+	stack_t *curr;
+	int sub, n;
 
-	aux = *head;
-	for (nodes = 0; aux != NULL; nodes++)
-		aux = aux->next;
-	if (nodes < 2)
+	curr = *head;
+	for (n = 0; curr != NULL; n++)
+		curr = curr->next;
+	if (n < 2)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", lineCount);
 		fclose(bus.file);
@@ -21,9 +21,9 @@ void s_sub(stack_t **head, unsigned int lineCount)
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	aux = *head;
-	sus = aux->next->n - aux->n;
-	aux->next->n = sus;
-	*head = aux->next;
-	free(aux);
+	curr = *head;
+	sub = curr->next->n - curr->n;
+	curr->next->n = sub;
+	*head = curr->next;
+	free(curr);
 }

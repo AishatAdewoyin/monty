@@ -1,18 +1,18 @@
 #include "monty.h"
 /**
- * s_addpall - prints the element of stack
- * @head: pointer to stack head
- * @lineCount: unused parameter
- * Return: void
+ * s_pall - prints the element of stack
+ * @head:  head pointer
+ * @lineNum: unused parameter
+ * Return: nothing
 */
-void s_pall(stack_t **head, unsigned int lineCount)
+void s_pall(stack_t **head, unsigned int lineNum)
 {
-	stack_t *tmp;
-	(void)lineCount;
+	stack_t *temp;
+	(void)lineNum;
 
-	tmp = *head;
-	if (tmp == NULL)
+	temp = *head;
+	if (temp == NULL)
 		return;
-	for (; tmp != NULL; tmp = tmp->next)
-		printf("%d\n", tmp->n);
+	for (; temp != NULL; temp = temp->next)
+		printf("%d\n", temp->n);
 }

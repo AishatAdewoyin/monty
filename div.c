@@ -1,40 +1,40 @@
 #include "monty.h"
 /**
- * s_adddiv - divides the top two elements of the stack.
- * @head: stack head
- * @lineCount: lineCount
+ * s_div - divides the top two elements of the stack.
+ * @head: head pointer
+ * @lineNum: line counter
  * Return: no return
 */
-void s_div(stack_t **head, unsigned int lineCount)
+void s_div(stack_t **head, unsigned int lineNum)
 {
-	stack_t *h;
-	int len = 0, aux;
+	stack_t *temp;
+	int l = 0, curr;
 
-	h = *head;
-	while (h)
+	temp = *head;
+	while (temp)
 	{
-		h = h->next;
-		len++;
+		temp = temp->next;
+		l++;
 	}
-	if (len < 2)
+	if (l < 2)
 	{
-		fprintf(stderr, "L%d: can't div, stack too short\n", lineCount);
+		fprintf(stderr, "L%d: can't div, stack too short\n", lineNum);
 		fclose(bus.file);
 		free(bus.content);
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	h = *head;
-	if (h->n == 0)
+	temp = *head;
+	if (temp->n == 0)
 	{
-		fprintf(stderr, "L%d: division by zero\n", lineCount);
+		fprintf(stderr, "L%d: division by zero\n", lineNum);
 		fclose(bus.file);
 		free(bus.content);
 		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	aux = h->next->n / h->n;
-	h->next->n = aux;
-	*head = h->next;
-	free(h);
+	curr = temp->next->n / temp->n;
+	temp->next->n = curr;
+	*head = temp->next;
+	free(temp);
 }

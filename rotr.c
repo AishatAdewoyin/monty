@@ -1,26 +1,26 @@
 #include "monty.h"
 /**
-  *s_addrotr- rotates the stack to the bottom
-  *@head: stack head
-  *@lineCount: lineCount
-  *Return: no return
+  *s_rotr- rotates the stack to the bottom
+  *@head: head pointer
+  *@lineNum:line counter
+  *Return: nothing
  */
-void s_rotr(stack_t **head, __attribute__((unused)) unsigned int lineCount)
+void s_rotr(stack_t **head, __attribute__((unused)) unsigned int lineNum)
 {
-	stack_t *copy;
+	stack_t *temp;
 
-	copy = *head;
+	temp = *head;
 	if (*head == NULL || (*head)->next == NULL)
 	{
 		return;
 	}
-	while (copy->next)
+	while (temp->next)
 	{
-		copy = copy->next;
+		temp = temp->next;
 	}
-	copy->next = *head;
-	copy->prev->next = NULL;
-	copy->prev = NULL;
-	(*head)->prev = copy;
-	(*head) = copy;
+	temp->next = *head;
+	temp->prev->next = NULL;
+	temp->prev = NULL;
+	(*head)->prev = temp;
+	(*head) = temp;
 }
